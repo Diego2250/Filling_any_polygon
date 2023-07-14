@@ -37,11 +37,11 @@ int main() {
             Vertex2(205, 410), Vertex2(193, 383)
     };
 
-    // Rellenar polígono 1 con amarillo
+    // Rellenar Polígono 1 con amarillo
     framebuffer.setCurrentColor(Color(255, 255, 0)); // Amarillo
     framebuffer.fillPolygon(polygon1Points);
 
-    // Dibujar orilla del polígono 1 en blanco
+    // Dibujar orilla del Polígono 1 en blanco
     framebuffer.setCurrentColor(Color(255, 255, 255)); // Blanco
     for (size_t i = 0; i < polygon1Points.size(); ++i) {
         const Vertex2& currentPoint = polygon1Points[i];
@@ -54,11 +54,11 @@ int main() {
             Vertex2(321, 335), Vertex2(288, 286), Vertex2(339, 251), Vertex2(374, 302)
     };
 
-    // Rellenar polígono 2 con azul
+    // Rellenar Polígono 2 con azul
     framebuffer.setCurrentColor(Color(0, 0, 255)); // Azul
     framebuffer.fillPolygon(polygon2Points);
 
-    // Dibujar orilla del polígono 2 en blanco
+    // Dibujar orilla del Polígono 2 en blanco
     framebuffer.setCurrentColor(Color(255, 255, 255)); // Blanco
     for (size_t i = 0; i < polygon2Points.size(); ++i) {
         const Vertex2& currentPoint = polygon2Points[i];
@@ -71,15 +71,45 @@ int main() {
             Vertex2(377, 249), Vertex2(411, 197), Vertex2(436, 249)
     };
 
-    // Rellenar polígono 3 con rojo
+    // Rellenar Polígono 3 con rojo
     framebuffer.setCurrentColor(Color(255, 0, 0)); // Rojo
     framebuffer.fillPolygon(polygon3Points);
 
-    // Dibujar orilla del polígono 3 en blanco
+    // Dibujar orilla del Polígono 3 en blanco
     framebuffer.setCurrentColor(Color(255, 255, 255)); // Blanco
     for (size_t i = 0; i < polygon3Points.size(); ++i) {
         const Vertex2& currentPoint = polygon3Points[i];
         const Vertex2& nextPoint = polygon3Points[(i + 1) % polygon3Points.size()];
+        framebuffer.drawLine(currentPoint, nextPoint);
+    }
+
+    // Polígono 4
+    std::vector<Vertex2> polygon4Points = {
+            Vertex2(413, 177), Vertex2(448, 159), Vertex2(502, 88), Vertex2(553, 53),
+            Vertex2(535, 36), Vertex2(676, 37), Vertex2(660, 52), Vertex2(750, 145),
+            Vertex2(761, 179), Vertex2(672, 192), Vertex2(659, 214), Vertex2(615, 214),
+            Vertex2(632, 230), Vertex2(580, 230), Vertex2(597, 215), Vertex2(552, 214),
+            Vertex2(517, 144), Vertex2(466, 180)
+    };
+
+    // Polígono 5
+    std::vector<Vertex2> polygon5Points = {
+            Vertex2(682, 175), Vertex2(708, 120), Vertex2(735, 148), Vertex2(739, 170)
+    };
+
+    // Rellenar polígono 4 con verde
+    framebuffer.setCurrentColor(Color(0, 255, 0)); // Verde
+    framebuffer.fillPolygon(polygon4Points);
+
+    // Rellenar polígono 5 con negro (agujero)
+    framebuffer.setCurrentColor(Color(0, 0, 0)); // Negro
+    framebuffer.fillPolygon(polygon5Points);
+
+    // Dibujar la orilla del polígono 4 en blanco
+    framebuffer.setCurrentColor(Color(255, 255, 255)); // Blanco
+    for (size_t i = 0; i < polygon4Points.size(); ++i) {
+        const Vertex2& currentPoint = polygon4Points[i];
+        const Vertex2& nextPoint = polygon4Points[(i + 1) % polygon4Points.size()];
         framebuffer.drawLine(currentPoint, nextPoint);
     }
 
