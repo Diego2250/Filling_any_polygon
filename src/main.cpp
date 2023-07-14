@@ -30,29 +30,39 @@ int main() {
     // Crear un objeto Framebuffer
     Framebuffer framebuffer(800, 600, Color(0, 0, 0)); // Ancho: 800, Alto: 600, Color de borrado: Negro
 
-    // Dibujar un polígono
-    std::vector<Vertex2> polygonPoints = {
-            Vertex2(165, 380),
-            Vertex2(185, 360),
-            Vertex2(180, 330),
-            Vertex2(207, 345),
-            Vertex2(233, 330),
-            Vertex2(230, 360),
-            Vertex2(250, 380),
-            Vertex2(220, 385),
-            Vertex2(205, 410),
-            Vertex2(193, 383)
+    // Polígono 1
+    std::vector<Vertex2> polygon1Points = {
+            Vertex2(165, 380), Vertex2(185, 360), Vertex2(180, 330), Vertex2(207, 345),
+            Vertex2(233, 330), Vertex2(230, 360), Vertex2(250, 380), Vertex2(220, 385),
+            Vertex2(205, 410), Vertex2(193, 383)
     };
 
-    // Rellenar el polígono con amarillo
+    // Rellenar polígono 1 con amarillo
     framebuffer.setCurrentColor(Color(255, 255, 0)); // Amarillo
-    framebuffer.fillPolygon(polygonPoints);
+    framebuffer.fillPolygon(polygon1Points);
 
-    // Dibujar la orilla del polígono en blanco
+    // Dibujar orilla del polígono 1 en blanco
     framebuffer.setCurrentColor(Color(255, 255, 255)); // Blanco
-    for (size_t i = 0; i < polygonPoints.size(); ++i) {
-        const Vertex2& currentPoint = polygonPoints[i];
-        const Vertex2& nextPoint = polygonPoints[(i + 1) % polygonPoints.size()];
+    for (size_t i = 0; i < polygon1Points.size(); ++i) {
+        const Vertex2& currentPoint = polygon1Points[i];
+        const Vertex2& nextPoint = polygon1Points[(i + 1) % polygon1Points.size()];
+        framebuffer.drawLine(currentPoint, nextPoint);
+    }
+
+    // Polígono 2
+    std::vector<Vertex2> polygon2Points = {
+            Vertex2(321, 335), Vertex2(288, 286), Vertex2(339, 251), Vertex2(374, 302)
+    };
+
+    // Rellenar polígono 2 con azul
+    framebuffer.setCurrentColor(Color(0, 0, 255)); // Azul
+    framebuffer.fillPolygon(polygon2Points);
+
+    // Dibujar orilla del polígono 2 en blanco
+    framebuffer.setCurrentColor(Color(255, 255, 255)); // Blanco
+    for (size_t i = 0; i < polygon2Points.size(); ++i) {
+        const Vertex2& currentPoint = polygon2Points[i];
+        const Vertex2& nextPoint = polygon2Points[(i + 1) % polygon2Points.size()];
         framebuffer.drawLine(currentPoint, nextPoint);
     }
 
