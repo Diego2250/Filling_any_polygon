@@ -66,6 +66,23 @@ int main() {
         framebuffer.drawLine(currentPoint, nextPoint);
     }
 
+    // Polígono 3
+    std::vector<Vertex2> polygon3Points = {
+            Vertex2(377, 249), Vertex2(411, 197), Vertex2(436, 249)
+    };
+
+    // Rellenar polígono 3 con rojo
+    framebuffer.setCurrentColor(Color(255, 0, 0)); // Rojo
+    framebuffer.fillPolygon(polygon3Points);
+
+    // Dibujar orilla del polígono 3 en blanco
+    framebuffer.setCurrentColor(Color(255, 255, 255)); // Blanco
+    for (size_t i = 0; i < polygon3Points.size(); ++i) {
+        const Vertex2& currentPoint = polygon3Points[i];
+        const Vertex2& nextPoint = polygon3Points[(i + 1) % polygon3Points.size()];
+        framebuffer.drawLine(currentPoint, nextPoint);
+    }
+
     // Guardar el contenido del framebuffer en un archivo BMP
     framebuffer.renderBuffer();
 
